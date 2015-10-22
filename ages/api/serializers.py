@@ -29,18 +29,18 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ('url', 'name')
 
-class FleetSerializer(serializers.HyperlinkedModelSerializer):
+class FleetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fleet
-        fields = ('url', 'name', 'motto')
+        fields = ('id', 'url', 'name', 'motto')
 
-class ShipSerializer(serializers.HyperlinkedModelSerializer):
+class ShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ship
-        fields = ('url', 'name', 'fleet')
+        fields = ('id', 'url', 'name', 'fleet')
 
-class OfficerSerializer(serializers.HyperlinkedModelSerializer):
+class OfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Officer
-        fields = ('url', 'name', 'rank', 'home_planet', 'ship')
+        fields = ('id', 'url', 'name', 'rank', 'home_planet', 'ship')
 

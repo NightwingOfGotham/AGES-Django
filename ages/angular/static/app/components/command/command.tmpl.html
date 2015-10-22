@@ -1,0 +1,20 @@
+<div class="command">
+
+  <p ng-show="!command.fleets.length" class="no-fleets">
+    Argelian Galactic Empire Star Command has no fleets on record.  Please consult the Datamancers on Technosphere IV for possible data integrity issues.
+  </p>
+
+  <table class="command__table">
+    <tr ng-repeat="fleet in command.fleets">
+      <td class="command__table-logo">
+        <img ng-src="" alt="Fleet Logo" />
+      </td>
+      <td class="command__table-name">
+        <a href="" ng-click="command.goToFleet(fleet.id);">
+          {{ fleet.name }} - {{ fleet.motto }}
+        </a>
+      </td>
+    </tr>
+  </table>
+
+</div>

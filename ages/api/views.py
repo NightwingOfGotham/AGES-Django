@@ -22,28 +22,20 @@ class ForbiddenAccess(APIException):
     default_detail = 'Action Forbidden'
 
 
-class FleetShipList(mixins.ListModelMixin, generics.GenericAPIView):
-    permission_class = ()
-    queryset = Ship.objects.filter(fleet=fleet_pk)
+class FleetShipList(generics.ListAPIView):
     serializer_class = ShipSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+    def get_queryset(self):
+        fleet_pk = self.kwargs['fleet_pk']
+        return Ship.objects.filter(fleet=fleet_pk)
 
 
-class ShipOfficerList(APIView):
-    permission_class = ()
+class ShipOfficerList(generics.ListAPIView):
+    serializer_class = OfficerSerializer
 
-    def get_objects(self, pk):
-        try:
-            return Officer.objects.get(pk=pk)
-        except Officer.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        officers = self.get_objects(pk)
-        serializer = OfficerSerializer(officers, context={'request':request})
-        return Response(serializer.data)
+    def get_queryset(self):
+        ship_pk = self.kwargs['ship_pk']
+        return Officer.objects.filter(ship=ship_pk)
 
 
 class UserViewSet(viewsets.ModelViewSet):

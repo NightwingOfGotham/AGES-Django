@@ -1,0 +1,32 @@
+<div class="ship">
+
+  <ul class="ship_list">
+    <li ng-show="!ship.officers.length" class="no-officers">
+      This ship has no officers on record.  Please consult the Datamancers on Technosphere IV for possible data integrity issues.
+    </li>
+
+    <li ng-repeat="officer in ship.officers">
+      <div class="ship__list-info">
+        <p class="ship__list-name">
+          <a href="" ng-click="ship.goToOfficer(officer.id);">
+            {{ officer.rank }} {{ officer.name }}
+          </a>
+        </p>
+      </div>
+    </li>
+  </ul>
+
+  <ul class="ship_links">
+    <li>
+      <a href="" ng-click="ship.goToFleet();">
+        Go back to fleet ship roster
+      </a>
+    </li>
+    <li>
+      <a href="" ng-click="ship.goToCommand();">
+        Go back to fleet roster
+      </a>
+    </li>
+  </ul>
+
+</div>
