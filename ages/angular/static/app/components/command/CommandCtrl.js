@@ -6,5 +6,5 @@ angular.module('GalacticApp')
     function CommandCtrl() {
       'use strict';
 
-      this.title = "Empire Fleet Roster";
+      this.title = "Fleets";
     });

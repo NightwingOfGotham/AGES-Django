@@ -1,20 +1,33 @@
-<div class="command">
+<div class="command container">
+  <div class="row">
 
-  <p ng-show="!command.fleets.length" class="no-fleets">
-    Argelian Galactic Empire Star Command has no fleets on record.  Please consult the Datamancers on Technosphere IV for possible data integrity issues.
-  </p>
+    <div class="col-sm-3 sidebar-nav">
+      <nav class="navbar navbar-default">
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-repeat="fleet in command.fleets"><a ng-click="command.getShips(fleet.id);" data-toggle="tab">{{ fleet.name }}</a></li>
+        </ul>
+      </nav>
+    </div>
 
-  <table class="command__table">
-    <tr ng-repeat="fleet in command.fleets">
-      <td class="command__table-logo">
-        <img ng-src="" alt="Fleet Logo" />
-      </td>
-      <td class="command__table-name">
-        <a href="" ng-click="command.goToFleet(fleet.id);">
-          {{ fleet.name }} - {{ fleet.motto }}
-        </a>
-      </td>
-    </tr>
-  </table>
+    <div ng-hide="!command.ships.length" class="col-sm-3 sidebar-nav">
+      <nav class="navbar navbar-default">
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-repeat="ship in command.ships"><a ng-click="command.getOfficers(ship.id);" data-toggle="tab">{{ ship.name }}</a></li>
+        </ul>
+      </nav>
+    </div>
 
+    <div ng-hide="!command.officers.length" class="col-sm-3 sidebar-nav">
+      <nav class="navbar navbar-default">
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-repeat="officer in command.officers"><a ng-click="command.getOfficer(officer.id);" data-toggle="tab">{{ officer.name }}</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div ng-hide="!command.officer.length" class="col-sm-3">
+      <div ng-repeat="officer in command.officer" class="well well-sm">{{ officer.rank }} {{ officer.name }} is an officer from {{officer.home_planet }} with a distinguished career.</div>
+    </div>
+
+  </div>
 </div>

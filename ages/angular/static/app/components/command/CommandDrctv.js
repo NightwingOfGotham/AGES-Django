@@ -14,15 +14,35 @@ angular.module('GalacticApp')
 
       controller: function (CommandFactory) {
         this.fleets = {};
-
-        this.goToFleet = function(fleetId) {
-          CommandFactory.goToFleet(fleetId);
-        };
+        this.ships = {};
+        this.officers = {};
+        this.officer = {};
 
         CommandFactory.getFleets()
           .then( angular.bind( this, function then() {
             this.fleets = CommandFactory.fleets;
           }));
+
+        this.getShips = function(fleetId) {
+          CommandFactory.getShips(fleetId)
+            .then( angular.bind(this, function then() {
+              this.ships = CommandFactory.ships;
+            }))
+        };
+
+        this.getOfficers = function(shipId) {
+          CommandFactory.getOfficers(shipId)
+            .then( angular.bind(this, function then() {
+              this.officers = CommandFactory.officers;
+            }))
+        };
+
+        this.getOfficer = function(officerId) {
+          CommandFactory.getOfficer(officerId)
+            .then( angular.bind(this, function then() {
+              this.officer = CommandFactory.officer;
+            }))
+        };
       },
 
       link: function(scope, element, attrs, ctrl) {
@@ -32,6 +52,4 @@ angular.module('GalacticApp')
         */
       }
     };
-
-
   });

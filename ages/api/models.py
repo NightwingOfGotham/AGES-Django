@@ -18,12 +18,14 @@ class Ship(models.Model):
 
 class Officer(models.Model):
     ADMIRAL = 'ADM'
+    FLEET_CAPTAIN = 'FCPT'
     CAPTAIN = 'CAPT'
     COMMANDER = 'CDR'
     LEFTENANT = 'LEF'
     ENSIGN = 'ENS'
     RANK_CHOICES = (
         (ADMIRAL, 'Admiral'),
+        (FLEET_CAPTAIN, 'Fleet Captain'),
         (CAPTAIN, 'Captain'),
         (COMMANDER, 'Commander'),
         (LEFTENANT, 'Leftenant'),

@@ -1,60 +1,21 @@
-html {
-  background-color: black;
-}
-
-body {
-  font-family: Montserrat, Georgia, Serif;
-  font-weight: bold;
-  text-align: center;
-  color: #EE7AE9;
-  margin: 3px;
-}
-
-ul {
-  list-style-type: none;
-}
-
-header, .module {
-  background-color: #595959;
-  padding: 10px 40px;
-}
-
-.module {
-  border-top-width: 5px;
-  border-top-style: solid;
-  border-top-color: #FFBBFF;
-}
-
-header {
-  font-size: xx-large;
-  border-radius: 25px 25px 0 0;
-}
-
-.directive {
-  border-radius: 0 0 25px 25px;
-}
-
-.officer__list-info {
-  display: table;
-  margin: 0 auto;
-}
-
-dl, dt, dd, .command__table-name {
-  text-align: left;
-}
-
-table {
-  margin: auto;
-}
-
-td[class$="table-logo"] {
-  background-color: white;
-  border-radius: 10px;
-  border: 10px solid #EE7AE9;
-}
-
-td[class$="table-name"] a {
-  padding-left: 10px;
-  display: block;
-  text-decoration: none;
+/* make sidebar nav vertical */ 
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
 }

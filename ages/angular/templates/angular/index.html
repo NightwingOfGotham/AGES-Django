@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>Argelian Galactic Empire Star Command</title>
     <link href="{% static "assets/bootstrap3/css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "assets/css/style.css" %}" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <style>
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -16,38 +17,27 @@
   </head>
   <body>
     <header class="header" role="banner">
-      <div class="header__text jumbotron">
+      <div class="header__text jumbotron text-center">
         <p>Argelian Galactic Empire Star Command</p>
       </div>
     </header>
 
-    <main class="main" role="main">
-      <div ng-view class="flex"></div>
-    </main>
+    <div ng-controller="CommandCtrl">
+      <div class="module directive">
+        <command></command>
+      </div>
+    </div>
 
     <!-- Vendor libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
-    <script src="{% static "assets/js/angular-route.js" %}"></script>
-    <script src="{% static "assets/js/angular-sanitize.js" %}"></script>
     <script src="{% static "assets/bootstrap3/js/bootstrap.min.js" %}"></script>
+
     <!-- Application Files -->
     <script src="{% static "app/components/app.js" %}"></script>
 
     <script src="{% static "app/components/command/CommandCtrl.js" %}"></script>
     <script src="{% static "app/components/command/CommandDrctv.js" %}"></script>
     <script src="{% static "app/components/command/CommandFactory.js" %}"></script>
-
-    <script src="{% static "app/components/fleet/FleetCtrl.js" %}"></script>
-    <script src="{% static "app/components/fleet/FleetDrctv.js" %}"></script>
-    <script src="{% static "app/components/fleet/FleetFactory.js" %}"></script>
-
-    <script src="{% static "app/components/ship/ShipCtrl.js" %}"></script>
-    <script src="{% static "app/components/ship/ShipDrctv.js" %}"></script>
-    <script src="{% static "app/components/ship/ShipFactory.js" %}"></script>
-
-    <script src="{% static "app/components/officer/OfficerCtrl.js" %}"></script>
-    <script src="{% static "app/components/officer/OfficerDrctv.js" %}"></script>
-    <script src="{% static "app/components/officer/OfficerFactory.js" %}"></script>
   </body>
 </html>
