@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, Group
 from models import Fleet, Ship, Officer
 from rest_framework import serializers
 
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     def create(self, validated_data):
         user = User(
@@ -21,8 +22,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('url', 'username', 'first_name', 'last_name',
-            'email', 'is_staff', 'groups')
+        fields = ('url', 'username', 'first_name', 'last_name', 'email',
+                  'is_staff', 'groups')
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -32,15 +33,12 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class FleetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Fleet
-        fields = ('id', 'url', 'name', 'motto')
 
 class ShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ship
-        fields = ('id', 'url', 'name', 'fleet')
 
 class OfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Officer
-        fields = ('id', 'url', 'name', 'rank', 'home_planet', 'ship')
 

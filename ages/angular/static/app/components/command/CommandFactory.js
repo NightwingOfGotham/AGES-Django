@@ -11,17 +11,11 @@ angular.module('GalacticApp')
     exports.officers = [];
     exports.officer = [];
 
-    exports.goToFleet = function(fleetId) {
-      if ( angular.isNumber(fleetId) ) {
-        $location.path('command/fleet/' + fleetId)
-      }
-    };
-
     exports.getFleets = function() {
       var deferred = $q.defer();
       return $http.get('/api/fleet/')
         .success(function (data) {
-          exports.fleets = data.sort(compare);
+          exports.fleets = data.sort(compareName);
           deferred.resolve(data);
         })
         .error(function (data) {
@@ -32,9 +26,9 @@ angular.module('GalacticApp')
 
     exports.getShips = function (fleetId) {
       var deferred = $q.defer();
-      return $http.get('/api/ship/')
+      return $http.get('/api/fleet-ships/' + fleetId + '/')
         .success(function (data) {
-          exports.ships = getFleetShips(data, fleetId);
+          exports.ships = data.sort(compareName);
           exports.officers.length = 0;
           exports.officer.length = 0;
           deferred.resolve(data);
@@ -45,23 +39,11 @@ angular.module('GalacticApp')
       return deferred.promise;
     };
 
-    function getFleetShips (data, fleetId) {
-      var ships = [];
-      for (var index in data) {
-        var ship = data[index];
-        if (ship.fleet == fleetId) {
-          ships.push(data[index]);
-        }
-      }
-      return ships;
-    }
-
     exports.getOfficers = function (shipId) {
       var deferred = $q.defer();
-      return $http.get('/api/officer/')
+      return $http.get('/api/ship-officers/' + shipId + '/')
         .success(function (data) {
-          exports.officers = getShipOfficers(data, shipId);
-          console.log(exports.officers);
+          exports.officers = data.sort(compareName);
           exports.officer.length = 0;
           deferred.resolve(data);
         })
@@ -71,20 +53,9 @@ angular.module('GalacticApp')
       return deferred.promise;
     };
 
-    function getShipOfficers (data, shipId) {
-      var officers = [];
-      for (var index in data) {
-        var officer = data[index];
-        if (officer.ship == shipId) {
-          officers.push(data[index]);
-        }
-      }
-      return officers;
-    }
-
     exports.getOfficer = function (officerId) {
       var deferred = $q.defer();
-      return $http.get('/api/officer/' + officerId)
+      return $http.get('/api/officer/' + officerId + '/')
         .success(function (data) {
           exports.officer = [data];
           deferred.resolve(data);
@@ -95,10 +66,10 @@ angular.module('GalacticApp')
       return deferred.promise;
     };
 
-    function compare(a,b) {
-      if (a.fleetId < b.fleetId)
+    function compareName(a,b) {
+      if (a.name < b.name)
         return -1;
-      if (a.fleetId > b.fleetId)
+      if (a.name > b.name)
         return 1;
       return 0;
     }

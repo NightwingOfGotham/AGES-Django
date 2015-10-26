@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'ages.api',
-    'ages.angular'
+    'ages.angular',
+    'ages.core',
 )
 
 REST_FRAMEWORK = {

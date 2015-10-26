@@ -1,20 +1,15 @@
 from django.contrib.auth.models import User, Group
-from django.shortcuts import render
 from models import Fleet, Ship, Officer
 from rest_framework import viewsets
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 from serializers import UserSerializer, GroupSerializer
 from serializers import FleetSerializer, ShipSerializer, OfficerSerializer
 
 # for custom GET of available menu list
-from rest_framework import mixins
 from rest_framework import generics
 
 # for custom GET of available menu details
-from django.http import Http404
 from rest_framework.exceptions import APIException
-from rest_framework.response import Response 
-from rest_framework.views import APIView 
 
 
 class ForbiddenAccess(APIException):
@@ -23,19 +18,21 @@ class ForbiddenAccess(APIException):
 
 
 class FleetShipList(generics.ListAPIView):
+    permission_classes = (AllowAny,)
     serializer_class = ShipSerializer
 
     def get_queryset(self):
-        fleet_pk = self.kwargs['fleet_pk']
-        return Ship.objects.filter(fleet=fleet_pk)
+        fleet = self.kwargs['fleet']
+        return Ship.objects.filter(fleet=fleet)
 
 
 class ShipOfficerList(generics.ListAPIView):
+    permission_classes = (AllowAny,)
     serializer_class = OfficerSerializer
 
     def get_queryset(self):
-        ship_pk = self.kwargs['ship_pk']
-        return Officer.objects.filter(ship=ship_pk)
+        ship = self.kwargs['ship']
+        return Officer.objects.filter(ship=ship)
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -51,15 +48,18 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class FleetViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = Fleet.objects.all()
     serializer_class = FleetSerializer
 
 
 class ShipViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = Ship.objects.all()
     serializer_class = ShipSerializer
 
 
 class OfficerViewSet(viewsets.ModelViewSet):
+    permission_classes = (AllowAny,)
     queryset = Officer.objects.all()
     serializer_class = OfficerSerializer

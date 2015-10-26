@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'admin/', include(admin.site.urls)),
     url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    url(r'fleet-ships/(?P<fleet_pk>[0-9]+)/$', FleetShipList.as_view()),
-    url(r'ship-officers/(?P<ship_pk>[0-9]+)/$', ShipOfficerList.as_view()),
+    url(r'fleet-ships/(?P<fleet>[0-9]+)/$', FleetShipList.as_view()),
+    url(r'ship-officers/(?P<ship>[0-9]+)/$', ShipOfficerList.as_view()),
 ]
