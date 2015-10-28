@@ -48,18 +48,15 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class FleetViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
     queryset = Fleet.objects.all()
     serializer_class = FleetSerializer
 
 
 class ShipViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
     queryset = Ship.objects.all()
     serializer_class = ShipSerializer
 
 
 class OfficerViewSet(viewsets.ModelViewSet):
-    permission_classes = (AllowAny,)
     queryset = Officer.objects.all()
     serializer_class = OfficerSerializer
