@@ -11,6 +11,7 @@ from views import (
 from views import (
     FleetShipList,
     ShipOfficerList,
+    create_user,
 )
 
 router = routers.DefaultRouter()
@@ -24,6 +25,7 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'admin/', include(admin.site.urls)),
     url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'create-user/', create_user, name="create_user"),
 
     url(r'fleet-ships/(?P<fleet>[0-9]+)/$', FleetShipList.as_view()),
     url(r'ship-officers/(?P<ship>[0-9]+)/$', ShipOfficerList.as_view()),

@@ -60,3 +60,8 @@ class ShipViewSet(viewsets.ModelViewSet):
 class OfficerViewSet(viewsets.ModelViewSet):
     queryset = Officer.objects.all()
     serializer_class = OfficerSerializer
+
+
+def create_user(request):
+    ## turn this into a class with a GET for form render and a POST for user creation
+    pass

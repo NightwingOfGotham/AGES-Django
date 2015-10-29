@@ -1,5 +1,4 @@
 from django.contrib import admin
-from models import Fleet, Ship, Officer
 
 
 class FleetAdmin(admin.ModelAdmin):
